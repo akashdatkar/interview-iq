@@ -1,7 +1,8 @@
 {
   "scripts": {
     "dev": "npx nodemon server.js",
-    "start": "node server.js"
+    "start": "node server.js",
+    "postinstall": "npx puppeteer install"
   },
   "dependencies": {
     "@google/genai": "^2.10.0",
