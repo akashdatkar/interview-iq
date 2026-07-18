@@ -134,9 +134,11 @@ Rules:
 }
 
 async function generatePdfFromHtml(htmlContent) {
-    const executablePath = process.env.PUPPETEER_EXECUTABLE_PATH || puppeteer.executablePath();
-    const browser = await puppeteer.launch({
-        executablePath,
+    const executablePath = process.env.PUPPETEER_EXECUTABLE_PATH
+        ? process.env.PUPPETEER_EXECUTABLE_PATH
+        : await puppeteer.executablePath();
+
+    const launchOptions = {
         headless: 'new',
         args: [
             '--no-sandbox',
@@ -144,9 +146,15 @@ async function generatePdfFromHtml(htmlContent) {
             '--disable-dev-shm-usage',
             '--disable-gpu'
         ]
-    })
+    };
+
+    if (executablePath) {
+        launchOptions.executablePath = executablePath;
+    }
+
+    const browser = await puppeteer.launch(launchOptions);
     const page = await browser.newPage();
-    await page.setContent(htmlContent, { waitUntil: "networkidle0" })
+    await page.setContent(htmlContent, { waitUntil: "networkidle0" });
 
     const pdfBuffer = await page.pdf({
         format: "A4",
@@ -156,11 +164,11 @@ async function generatePdfFromHtml(htmlContent) {
             left: "15mm",
             right: "15mm"
         }
-    })
+    });
 
-    await browser.close()
+    await browser.close();
 
-    return pdfBuffer
+    return pdfBuffer;
 }
 
 async function generateResumePdf({ resume, selfDescription, jobDescription }) {
