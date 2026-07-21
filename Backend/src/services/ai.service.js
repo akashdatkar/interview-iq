@@ -178,14 +178,6 @@ async function generatePdfFromHtml(htmlContent) {
     // }
 
     //const browser = await puppeteer.launch(launchOptions);
-    const browser = await puppeteer.launch({
-      headless: true,
-      args: [
-        "--no-sandbox",
-        "--disable-setuid-sandbox",
-        "--disable-dev-shm-usage"
-      ]
-    });
 
     console.log("Puppeteer version:", require("puppeteer/package.json").version);
 
@@ -196,6 +188,17 @@ async function generatePdfFromHtml(htmlContent) {
     }
 
     console.log("Cache dir:", process.env.PUPPETEER_CACHE_DIR);
+
+    const browser = await puppeteer.launch({
+      headless: true,
+      args: [
+        "--no-sandbox",
+        "--disable-setuid-sandbox",
+        "--disable-dev-shm-usage"
+      ]
+    });
+
+    
 
     const page = await browser.newPage();
     await page.setContent(htmlContent, { waitUntil: "networkidle0" });
