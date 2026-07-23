@@ -11,8 +11,8 @@ Transform your resume, job description, and professional profile into a personal
   <a href="https://github.com/akashdatkar/interview-iq">📦 Repository</a>
 </p>
 
-![Next.js](https://img.shields.io/badge/Next.js-15-black?style=for-the-badge)
-![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge)
+![React.js](https://img.shields.io/badge/Next.js-15-black?style=for-the-badge)
+![JavaScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge)
 ![AI Powered](https://img.shields.io/badge/AI-Powered-success?style=for-the-badge)
 ![Vercel](https://img.shields.io/badge/Deployed-Vercel-black?style=for-the-badge)
 
